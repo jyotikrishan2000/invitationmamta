@@ -20,7 +20,3 @@ GitHub पर कोड पुश करना वेबसाइट को स�
 मुखपृष्ठ की Open Graph और Twitter metadata Production URL और `public/images/ganesh-social-preview-2026.png` को साझा कार्ड में इस्तेमाल करती है। मोबाइल पर **शेयर करें** सिस्टम शेयर मेनू खोलता है, **WhatsApp** पूरा वेबसाइट लिंक भेजता है, और **लिंक कॉपी करें** Instagram Story के Link sticker में इस्तेमाल किया जा सकता है। तीनों विकल्प Production domain पर `?invite=ganesh-2026` वाला URL देते हैं, जिससे सोशल ऐप पुराने लिंक के cached preview की जगह नया Ganesh cover fetch कर सकें। साझा URL खोलने पर वेबसाइट का मुख्य पृष्ठ खुलता है।
 
 सोशल ऐप पुराने लिंक प्रीव्यू को cache कर सकते हैं। नई deployment के बाद preview बदलने में समय लग सकता है।
-
-## Animation and mobile interaction
-
-`app/page.tsx` में cover opening और book page transitions Anime.js से चलते हैं। Cover खुलने के बाद section reveals GSAP ScrollTrigger से शुरू होते हैं; mobile और `prefers-reduced-motion` के लिए `gsap.matchMedia()` अलग व्यवहार रखता है। Couple photo banner स्थिर है। किताब और फोटो gallery में केवल स्पष्ट horizontal swipe से पृष्ठ या तस्वीर बदलती है; arrow buttons और keyboard arrows भी काम करते हैं। कार्यक्रम की route timeline `app/data/weddingData.ts` की पाँच मूल रस्मों से बनती है।
