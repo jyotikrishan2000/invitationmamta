@@ -685,3 +685,162 @@
   outline: none;
   background: #7d2535;
 }
+
+/* Ceremony journey: a route through the five events on the original invitation. */
+.ceremony-route {
+  position: relative;
+  display: grid;
+  gap: 30px;
+  width: min(100%, 1120px);
+  margin: 0 auto;
+}
+.ceremony-route-line {
+  position: absolute;
+  top: 35px;
+  bottom: 35px;
+  left: 50%;
+  width: 3px;
+  background: linear-gradient(#b78447, #762b3a 50%, #b78447);
+  transform: translateX(-50%);
+  transform-origin: top;
+}
+.ceremony-stop {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 86px minmax(0, 1fr);
+  align-items: center;
+}
+.ceremony-route-node {
+  display: grid;
+  grid-column: 2;
+  grid-row: 1;
+  place-items: center;
+  width: 66px;
+  height: 66px;
+  margin: auto;
+  border: 4px solid #f7ead5;
+  border-radius: 50%;
+  background: #6b2332;
+  color: #f4d49c;
+  box-shadow: 0 0 0 2px #b88b53, 0 8px 22px #5a2b2730;
+}
+.ceremony-stop:nth-child(even) .ceremony-card { grid-column: 1; }
+.ceremony-stop:nth-child(odd) .ceremony-card { grid-column: 3; }
+.ceremony-stop .ceremony-card {
+  grid-row: 1;
+  min-height: 370px;
+  padding: 24px;
+  background-blend-mode: screen;
+  transition: box-shadow .3s ease;
+}
+.ceremony-stop .ceremony-card:hover { box-shadow: 0 22px 46px #5a2b2733; }
+.ceremony-stop .ceremony-copy { max-width: 360px; margin: 0; }
+.ceremony-stop .ceremony-copy h3 { font-size: clamp(1.4rem, 2.25vw, 1.9rem); }
+.ceremony-direction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 44px;
+  margin-top: 17px;
+  padding: 8px 14px;
+  border: 1px solid #9b6841;
+  background: #fff9eddf;
+  color: #672737;
+  font-size: .78rem;
+  font-weight: 700;
+  text-shadow: none;
+}
+.ceremony-direction:active { transform: scale(.97); }
+@media (max-width: 700px) {
+  .ceremony-route { gap: 16px; max-width: 510px; }
+  .ceremony-route-line { top: 25px; bottom: 25px; left: 23px; transform: none; }
+  .ceremony-stop { grid-template-columns: 46px minmax(0, 1fr); gap: 11px; }
+  .ceremony-stop .ceremony-route-node { grid-column: 1; width: 45px; height: 45px; border-width: 3px; }
+  .ceremony-stop .ceremony-route-node svg { width: 22px; height: 22px; }
+  .ceremony-stop:nth-child(n) .ceremony-card { grid-column: 2; min-height: 350px; padding: 20px 12px; }
+  .ceremony-stop .ceremony-copy { max-width: none; padding: 13px 4px; }
+  .ceremony-stop .ceremony-copy h3 { font-size: clamp(1.2rem, 5vw, 1.65rem); }
+  .ceremony-stop .ceremony-copy small { overflow-wrap: anywhere; }
+  .ceremony-direction { min-height: 46px; }
+}
+@media (max-width: 360px) {
+  .ceremonies-section { padding-inline: 13px; }
+  .ceremony-stop { grid-template-columns: 40px minmax(0, 1fr); gap: 8px; }
+  .ceremony-route-line { left: 20px; }
+  .ceremony-stop .ceremony-route-node { width: 40px; height: 40px; }
+  .ceremony-stop:nth-child(n) .ceremony-card { min-height: 335px; }
+  .ceremony-stop .ceremony-label { font-size: .68rem; }
+}
+
+/* Swipeable gallery using the supplied photograph and invitation artwork. */
+.memory-section {
+  padding: clamp(72px, 8vw, 110px) 20px;
+  background: radial-gradient(circle at 70% 20%, #6d2033, #300a19 72%);
+  color: #fff1d8;
+}
+.memory-section .section-intro h2 { color: #fff3dc; }
+.memory-section .section-intro p { color: #e9d2b7; }
+.memory-gallery {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(250px, .7fr);
+  gap: clamp(22px, 5vw, 70px);
+  align-items: center;
+  width: min(100%, 1100px);
+  margin: auto;
+}
+.memory-visual {
+  position: relative;
+  height: clamp(410px, 45vw, 590px);
+  overflow: hidden;
+  border: 1px solid #bd8f55;
+  background: #17060e;
+  box-shadow: 0 24px 55px #11020b88;
+  touch-action: pan-y;
+}
+.memory-visual::after { position: absolute; inset: 12px; border: 1px solid #fff4d277; content: ""; pointer-events: none; }
+.memory-image { position: absolute; inset: 0; animation: memory-fade .5s ease-out both; }
+.memory-image img { object-fit: cover; }
+.memory-image.is-portrait img { object-fit: contain; }
+@keyframes memory-fade { from { opacity: .25; transform: scale(1.025); } to { opacity: 1; transform: scale(1); } }
+.memory-count { color: #d9b274; font: 600 .88rem var(--latin); letter-spacing: .2em; }
+.memory-copy h3 { margin: 15px 0 7px; font-size: clamp(2rem, 3.3vw, 3.1rem); font-weight: 500; }
+.memory-copy p { max-width: 320px; margin: 0; color: #ead7c0; line-height: 1.85; }
+.memory-controls { display: flex; gap: 10px; margin-top: 27px; }
+.memory-controls button {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #cda76d;
+  border-radius: 50%;
+  background: #fff4df12;
+  color: #ffe8ba;
+  transition: background .25s ease, transform .25s ease;
+}
+.memory-controls button:hover { background: #b88958; color: #2c0711; }
+.memory-controls button:active { transform: scale(.93); }
+.memory-swipe-hint { display: block; margin-top: 18px; color: #c9a677; font-size: .75rem; }
+@media (max-width: 700px) {
+  .memory-section { padding: 66px 16px 76px; }
+  .memory-gallery { grid-template-columns: 1fr; gap: 22px; max-width: 510px; }
+  .memory-visual { height: clamp(360px, 120vw, 560px); }
+  .memory-copy { text-align: center; }
+  .memory-copy p { margin-inline: auto; }
+  .memory-controls { justify-content: center; margin-top: 18px; }
+  .memory-swipe-hint { margin-top: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .memory-image { animation: none; }
+  .memory-controls button { transition: none; }
+}
+@media (max-width: 360px) {
+  .opening-copy { top: 37%; height: 48%; gap: 2px; }
+  .opening-action { min-height: 44px; margin-top: 5px; }
+  .countdown { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 270px; gap: 9px; }
+  .countdown-unit { min-height: 68px; }
+  .share-section { padding-inline: 12px; }
+  .share-actions { grid-template-columns: 1fr; }
+  .share-actions button:first-child { grid-column: auto; }
+}

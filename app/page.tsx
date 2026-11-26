@@ -2,11 +2,15 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { animate, createTimeline, stagger } from "animejs";
-import { ArrowDown, ArrowLeft, ArrowRight, BookOpen, CalendarDays, Copy, Home, MapPin, Phone, Share2, X } from "lucide-react";
+import { createTimeline, stagger } from "animejs";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowDown, ArrowLeft, ArrowRight, BookOpen, CalendarDays, Copy, Flower2, Handshake, Heart, Home, MapPin, Music2, Navigation, Phone, Share2, UtensilsCrossed, X } from "lucide-react";
 import { animateMotifDraw, GaneshaEmblem, PadmaDivider } from "@/components/Motifs";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import { WEDDING_DATA as wedding } from "@/app/data/weddingData";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const pageNames = ["परिचय", "कार्यक्रम", "स्थान व संपर्क"];
 const whatsappMessage = encodeURIComponent("नमस्ते, ममता कुमारी और जितेन्द्र जी के विवाह निमंत्रण के बारे में जानकारी चाहिए।");
@@ -15,16 +19,21 @@ function getInvitationShareUrl() {
   url.searchParams.set("invite", "ganesh-2026");
   return url.toString();
 }
-const featuredCeremonies = [
-  { event: wedding.events[0], title: "गणेश स्थापना", art: "ganesh-card.webp", className: "ganesh" },
-  { event: wedding.events[1], title: "बंदोली", art: "bandoli-card.webp", className: "bandoli" },
-  { event: wedding.events[3], title: "हस्त मिलाप", art: "hast-milap-card.webp", className: "hast-milap" },
-  { event: wedding.events[4], title: "सभा एवं प्रीतिभोज", art: "priti-card.webp", className: "priti" },
+const ceremonyJourney = [
+  { event: wedding.events[0], art: "ganesh-card.webp", icon: Flower2, className: "ganesh" },
+  { event: wedding.events[1], art: "bandoli-card.webp", icon: Music2, className: "bandoli" },
+  { event: wedding.events[2], art: "hero-mandap.jpg", icon: Handshake, className: "baraat" },
+  { event: wedding.events[3], art: "hast-milap-card.webp", icon: Heart, className: "hast-milap" },
+  { event: wedding.events[4], art: "priti-card.webp", icon: UtensilsCrossed, className: "priti" },
+];
+const galleryMoments = [
+  { src: "/images/couple-clean.jpg", alt: "ममता कुमारी और जितेन्द्र जी की मूल तस्वीर", title: "ममता और जितेन्द्र", description: "इस शुभ अवसर पर आपका स्नेह और आशीर्वाद ही हमारी सबसे प्यारी स्मृति होगी।", portrait: true },
+  { src: "/images/print-invitation-card.png", alt: "मूल शुभ विवाह निमंत्रण कार्ड", title: "मंगल निमंत्रण", description: "परिवार की ओर से स्नेह और सम्मान के साथ दिया गया आमंत्रण।", portrait: true },
+  { src: "/images/hero-mandap.jpg", alt: "सजे हुए विवाह मंडप का चित्र", title: "मंगल मंडप", description: "जहाँ हम सब मिलकर विवाह की शुभ घड़ी मनाएँगे।", portrait: false },
 ];
 
 function Countdown() {
   const [remaining, setRemaining] = useState<[number, number, number, number] | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const update = () => {
@@ -41,22 +50,8 @@ function Countdown() {
     return () => window.clearInterval(timer);
   }, []);
 
-  useEffect(() => {
-    if (!containerRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const units = containerRef.current.querySelectorAll(".countdown-unit");
-    if (units.length) {
-      animate(units, {
-        scale: [0.92, 1],
-        opacity: [0, 1],
-        delay: stagger(70),
-        duration: 500,
-        ease: "out(3)",
-      });
-    }
-  }, []);
-
   return (
-    <div ref={containerRef} className="countdown" aria-label="विवाह तक शेष समय">
+    <div className="countdown" aria-label="विवाह तक शेष समय">
       {(remaining ?? [null, null, null, null]).map((value, index) => (
         <div className="countdown-unit" key={index}>
           <strong>{value === null ? "--" : String(value).padStart(2, "0")}</strong>
@@ -74,7 +69,9 @@ export default function Page() {
   const [chatOpen, setChatOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("top");
   const [shareFeedback, setShareFeedback] = useState("");
-  const touchStart = useRef<number | null>(null);
+  const [galleryIndex, setGalleryIndex] = useState(0);
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const galleryTouchStart = useRef<{ x: number; y: number } | null>(null);
   const openingButton = useRef<HTMLButtonElement>(null);
   const progressBar = useRef<HTMLSpanElement>(null);
 
@@ -187,20 +184,82 @@ export default function Page() {
     return () => observer.disconnect();
   }, [entered]);
 
-  useEffect(() => {
-    const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !('IntersectionObserver' in window)) return;
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
+  useLayoutEffect(() => {
+    if (!entered) return;
+    const site = document.querySelector<HTMLElement>(".wedding-site");
+    if (!site) return;
+
+    const media = gsap.matchMedia();
+    media.add({
+      motion: "(prefers-reduced-motion: no-preference)",
+      mobile: "(max-width: 700px)",
+    }, (context) => {
+      if (!context.conditions?.motion) return;
+      const mobile = Boolean(context.conditions.mobile);
+      const offset = mobile ? 18 : 36;
+      const reveal = (element: HTMLElement | null, delay = 0) => {
+        if (!element || element.dataset.motionDone === "true") return;
+        const isStop = element.classList.contains("ceremony-stop");
+        gsap.fromTo(element,
+          { autoAlpha: 0, y: offset, scale: isStop ? 0.97 : 1 },
+          {
+            autoAlpha: 1, y: 0, scale: 1, duration: mobile ? 0.58 : 0.8,
+            delay, ease: "power3.out", clearProps: "opacity,visibility,transform",
+            onComplete: () => { element.dataset.motionDone = "true"; },
+            scrollTrigger: { trigger: element, start: mobile ? "top 94%" : "top 87%", once: true },
+          },
+        );
+      };
+
+      site.querySelectorAll<HTMLElement>("[data-reveal]").forEach((element, index) => {
+        const delay = !mobile && element.classList.contains("ceremony-stop") ? (index % 2) * 0.1 : 0;
+        reveal(element, delay);
       });
-    }, { threshold: 0.12 });
-    elements.forEach((element) => { element.classList.add("reveal-ready"); observer.observe(element); });
-    return () => observer.disconnect();
-  }, []);
+      reveal(site.querySelector<HTMLElement>(".original-invitation-art"), mobile ? 0 : 0.12);
+      reveal(site.querySelector<HTMLElement>(".invitation-book"), 0.08);
+      site.querySelectorAll<HTMLElement>(".family-invite-card").forEach((card, index) => {
+        reveal(card, mobile ? 0 : Math.min(index, 2) * 0.09);
+      });
+
+      const blessings = site.querySelector<HTMLElement>(".blessings-section");
+      const invocations = blessings?.querySelectorAll<HTMLElement>(".blessing-invocation");
+      if (blessings && invocations?.length) {
+        gsap.fromTo(invocations, { autoAlpha: 0, y: 12 }, {
+          autoAlpha: 1, y: 0, duration: 0.45, stagger: mobile ? 0.06 : 0.12,
+          ease: "power2.out", clearProps: "opacity,visibility,transform",
+          scrollTrigger: { trigger: blessings, start: "top 72%", once: true },
+        });
+      }
+
+      const date = site.querySelector<HTMLElement>(".date-section");
+      const units = date?.querySelectorAll<HTMLElement>(".countdown-unit");
+      if (date && units?.length) {
+        gsap.fromTo(units,
+          { autoAlpha: 0, y: mobile ? 10 : 18 },
+          {
+            autoAlpha: 1, y: 0, duration: 0.55, stagger: mobile ? 0.06 : 0.1,
+            ease: "power2.out", clearProps: "opacity,visibility,transform",
+            scrollTrigger: { trigger: date, start: "top 80%", once: true },
+          },
+        );
+      }
+
+      const closing = site.querySelector<HTMLElement>(".closing-content");
+      const closingItems = closing?.querySelectorAll<HTMLElement>(".closing-ganesh, .eyebrow, h2, p, .closing-map, .closing-signature");
+      if (closing && closingItems?.length) {
+        gsap.fromTo(closingItems, { autoAlpha: 0, y: mobile ? 8 : 16 }, {
+          autoAlpha: 1, y: 0, duration: 0.5, stagger: mobile ? 0.05 : 0.08,
+          ease: "power2.out", clearProps: "opacity,visibility,transform",
+          scrollTrigger: { trigger: closing, start: "top 86%", once: true },
+        });
+      }
+
+      const refresh = window.requestAnimationFrame(() => ScrollTrigger.refresh());
+      return () => window.cancelAnimationFrame(refresh);
+    }, site);
+
+    return () => media.revert();
+  }, [entered]);
 
   useEffect(() => {
     if (!chatOpen) return;
@@ -241,112 +300,6 @@ export default function Page() {
     return () => { tl.revert(); };
   }, [entered, page]);
 
-  useEffect(() => {
-    if (!entered || window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
-    const onMobile = window.matchMedia("(max-width: 700px)").matches;
-    const cards = document.querySelectorAll<HTMLElement>(".family-invite-card");
-    const animations: ReturnType<typeof animate>[] = [];
-    cards.forEach((card) => card.classList.add("anime-ready"));
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const card = entry.target as HTMLElement;
-        observer.unobserve(card);
-        animations.push(animate(card, { opacity: [0, 1], y: [onMobile ? 12 : 20, 0], duration: onMobile ? 540 : 820, ease: "out(3)" }));
-        const names = card.querySelectorAll<HTMLElement>(".family-person");
-        animations.push(animate(names, { opacity: [0, 1], y: [6, 0], delay: stagger(onMobile ? 35 : 55, { start: onMobile ? 90 : 170 }), duration: onMobile ? 360 : 540, ease: "out(3)" }));
-      });
-    }, { threshold: 0.18 });
-    cards.forEach((card) => observer.observe(card));
-    return () => { observer.disconnect(); animations.forEach((animation) => animation.revert()); cards.forEach((card) => card.classList.remove("anime-ready")); };
-  }, [entered]);
-
-  useEffect(() => {
-    if (!entered || window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
-    const onMobile = window.matchMedia("(max-width: 700px)").matches;
-    const grid = document.querySelector<HTMLElement>(".ceremony-grid");
-    if (!grid) return;
-    const cards = grid.querySelectorAll<HTMLElement>(".ceremony-card");
-    const animations: ReturnType<typeof animate>[] = [];
-
-    const observer = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      observer.disconnect();
-      animations.push(animate(cards, {
-        opacity: [0, 1],
-        y: [onMobile ? 18 : 30, 0],
-        scale: [0.96, 1],
-        delay: stagger(onMobile ? 65 : 100, { start: 80 }),
-        duration: onMobile ? 550 : 750,
-        ease: "out(3)",
-      }));
-    }, { threshold: 0.15 });
-
-    observer.observe(grid);
-
-    const hoverCleanups: (() => void)[] = [];
-    if (!onMobile) {
-      cards.forEach((card) => {
-        const onEnter = () => {
-          animate(card, {
-            y: -6,
-            duration: 250,
-            ease: "out(2)",
-          });
-        };
-        const onLeave = () => {
-          animate(card, {
-            y: 0,
-            duration: 250,
-            ease: "out(2)",
-          });
-        };
-        card.addEventListener("mouseenter", onEnter);
-        card.addEventListener("mouseleave", onLeave);
-        hoverCleanups.push(() => {
-          card.removeEventListener("mouseenter", onEnter);
-          card.removeEventListener("mouseleave", onLeave);
-        });
-      });
-    }
-
-    return () => {
-      observer.disconnect();
-      animations.forEach((anim) => anim.revert());
-      hoverCleanups.forEach((cleanup) => cleanup());
-    };
-  }, [entered]);
-
-  useEffect(() => {
-    if (!entered || window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
-    const section = document.querySelector<HTMLElement>(".blessings-section");
-    if (!section) return;
-    const items = section.querySelectorAll<HTMLElement>(".blessing-invocation");
-    const art = section.querySelector<HTMLElement>(".original-invitation-art");
-    const observer = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      observer.disconnect();
-      animate(items, { opacity: [0, 1], y: [16, 0], delay: stagger(125, { start: 150 }), duration: 760, ease: "out(3)" });
-      if (art) animate(art, { opacity: [0, 1], y: [32, 0], rotate: [-2, 0], duration: 1050, ease: "out(3)" });
-    }, { threshold: 0.18 });
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, [entered]);
-
-  useEffect(() => {
-    if (!entered || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const toggle = document.querySelector<HTMLElement>(".whatsapp-toggle");
-    if (!toggle) return;
-    const pulse = animate(toggle, {
-      scale: [1, 1.05, 1],
-      duration: 1200,
-      ease: "inOut(2)",
-      loop: true,
-      loopDelay: 3500,
-    });
-    return () => { pulse.revert(); };
-  }, [entered]);
-
   const enterInvitation = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -356,11 +309,28 @@ export default function Page() {
     setEntering(true);
   };
 
-  const onCardTouchEnd = (endX: number) => {
+  const onCardTouchEnd = (endX: number, endY: number) => {
     if (touchStart.current === null) return;
-    const distance = endX - touchStart.current;
-    if (Math.abs(distance) > 55) setPage((current) => Math.min(2, Math.max(0, current + (distance < 0 ? 1 : -1))));
+    const distance = endX - touchStart.current.x;
+    const verticalDistance = endY - touchStart.current.y;
+    if (Math.abs(distance) > 55 && Math.abs(distance) > Math.abs(verticalDistance) * 1.25) {
+      setPage((current) => Math.min(2, Math.max(0, current + (distance < 0 ? 1 : -1))));
+    }
     touchStart.current = null;
+  };
+
+  const changeGallery = (direction: number) => {
+    setGalleryIndex((current) => (current + direction + galleryMoments.length) % galleryMoments.length);
+  };
+
+  const onGalleryTouchEnd = (endX: number, endY: number) => {
+    if (galleryTouchStart.current === null) return;
+    const distance = endX - galleryTouchStart.current.x;
+    const verticalDistance = endY - galleryTouchStart.current.y;
+    if (Math.abs(distance) > 55 && Math.abs(distance) > Math.abs(verticalDistance) * 1.25) {
+      changeGallery(distance < 0 ? 1 : -1);
+    }
+    galleryTouchStart.current = null;
   };
 
   const copyInvitationLink = async () => {
@@ -497,8 +467,8 @@ export default function Page() {
                 if (event.key === "ArrowRight") setPage((current) => Math.min(2, current + 1));
                 if (event.key === "ArrowLeft") setPage((current) => Math.max(0, current - 1));
               }}
-              onTouchStart={(event) => { touchStart.current = event.touches[0].clientX; }}
-              onTouchEnd={(event) => onCardTouchEnd(event.changedTouches[0].clientX)}
+              onTouchStart={(event) => { touchStart.current = { x: event.touches[0].clientX, y: event.touches[0].clientY }; }}
+              onTouchEnd={(event) => onCardTouchEnd(event.changedTouches[0].clientX, event.changedTouches[0].clientY)}
             >
               {page === 0 && (
                 <div className="book-page book-couple-page" key="couple">
@@ -572,35 +542,67 @@ export default function Page() {
         </div>
       </section>
 
+      <section id="memories" className="memory-section" aria-labelledby="memory-title">
+        <div className="section-intro" data-reveal>
+          <span className="eyebrow">BLESSED MOMENTS</span>
+          <h2 id="memory-title">शुभ <em>झलकियाँ</em></h2>
+          <p>हमारी तस्वीर और विवाह की कुछ मंगल झलकियाँ।</p>
+        </div>
+        <div className="memory-gallery" data-reveal>
+          <div
+            className="memory-visual"
+            role="group"
+            aria-label="तस्वीरें; बाएँ या दाएँ स्वाइप करें"
+            tabIndex={0}
+            onKeyDown={(event) => {
+              if (event.key === "ArrowRight") { event.preventDefault(); changeGallery(1); }
+              if (event.key === "ArrowLeft") { event.preventDefault(); changeGallery(-1); }
+            }}
+            onTouchStart={(event) => { galleryTouchStart.current = { x: event.touches[0].clientX, y: event.touches[0].clientY }; }}
+            onTouchEnd={(event) => onGalleryTouchEnd(event.changedTouches[0].clientX, event.changedTouches[0].clientY)}
+          >
+            <div className={`memory-image${galleryMoments[galleryIndex].portrait ? " is-portrait" : ""}`} key={galleryMoments[galleryIndex].src}>
+              <Image src={galleryMoments[galleryIndex].src} alt={galleryMoments[galleryIndex].alt} fill sizes="(max-width: 700px) 90vw, 52vw" />
+            </div>
+          </div>
+          <div className="memory-copy" aria-live="polite">
+            <span className="memory-count">{String(galleryIndex + 1).padStart(2, "0")} / {String(galleryMoments.length).padStart(2, "0")}</span>
+            <h3>{galleryMoments[galleryIndex].title}</h3>
+            <p>{galleryMoments[galleryIndex].description}</p>
+            <div className="memory-controls">
+              <button type="button" onClick={() => changeGallery(-1)} aria-label="पिछली तस्वीर"><ArrowLeft size={21} /></button>
+              <button type="button" onClick={() => changeGallery(1)} aria-label="अगली तस्वीर"><ArrowRight size={21} /></button>
+            </div>
+            <span className="memory-swipe-hint">तस्वीर बदलने के लिए स्वाइप करें</span>
+          </div>
+        </div>
+      </section>
+
       <section id="ceremonies" className="ceremonies-section" aria-labelledby="ceremonies-title">
         <div className="section-intro" data-reveal>
           <span className="eyebrow">OUR CELEBRATIONS</span>
-          <h2 id="ceremonies-title">मंगल <em>कार्यक्रम</em></h2>
-          <p>हर रस्म में आपका स्नेह और आशीर्वाद हमारे लिए अनमोल है।</p>
+          <h2 id="ceremonies-title">उत्सव का <em>सफर</em></h2>
+          <p>विनायक पूजन से प्रीतिभोज तक, हर पड़ाव में आपका स्नेह हमारे लिए अनमोल है।</p>
         </div>
-        <div className="ceremony-grid">
-          {featuredCeremonies.map(({ event, title, art, className }) => (
-            <article key={event.id} className={`ceremony-card ceremony-${className}`} style={{ backgroundImage: `url(/images/${art})` }} data-reveal>
-              <div className="ceremony-copy">
-                <span className="ceremony-label">शुभ अवसर</span>
-                <h3>{title}</h3>
-                <p>{event.subtitle}</p>
-                <div className="ceremony-divider" aria-hidden="true">✦</div>
-                <strong>{event.day}, {event.date}</strong>
-                <span>{event.time}</span>
-                <small>{event.venue}</small>
-              </div>
-            </article>
-          ))}
-          <article className="ceremony-card ceremony-haldi" data-reveal>
-            <div className="ceremony-copy">
-              <span className="ceremony-label">मांगलिक रस्म</span>
-              <h3>हल्दी</h3>
-              <p>स्नेह और शुभकामनाओं से रंगी हल्दी की रस्म</p>
-              <div className="ceremony-divider" aria-hidden="true">✦</div>
-              <span>परिवार के साथ मंगल उत्सव</span>
+        <div className="ceremony-route" aria-label="विवाह कार्यक्रम का क्रम">
+          <span className="ceremony-route-line" aria-hidden="true" />
+          {ceremonyJourney.map(({ event, art, icon: Icon, className }) => (
+            <div className="ceremony-stop" key={event.id} data-reveal>
+              <span className="ceremony-route-node" aria-hidden="true"><Icon size={27} strokeWidth={1.5} /></span>
+              <article className={`ceremony-card ceremony-${className}`} style={{ backgroundImage: `url(/images/${art})` }}>
+                <div className="ceremony-copy">
+                  <span className="ceremony-label">पड़ाव {event.number} · {event.accent}</span>
+                  <h3>{event.title}</h3>
+                  <p>{event.subtitle}</p>
+                  <div className="ceremony-divider" aria-hidden="true">✦</div>
+                  <strong>{event.day}, {event.date}</strong>
+                  <span>{event.time}</span>
+                  <small>{event.venue}</small>
+                  <a className="ceremony-direction" href={wedding.mapsQueryUrl} target="_blank" rel="noopener noreferrer"><Navigation size={15} /> रास्ता देखें</a>
+                </div>
+              </article>
             </div>
-          </article>
+          ))}
         </div>
       </section>
 
