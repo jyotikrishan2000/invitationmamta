@@ -1,0 +1,663 @@
+:root{--wine:#4d0d1b;--deep:#2c0711;--gold:#d6ae68;--cream:#fff4dc;--paper:#fff8e9;--ink:#4d2028;--muted:#7b655a;--hindi:var(--font-royal-devanagari),"Nirmala UI",serif;--latin:var(--font-royal-latin),Georgia,serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--deep);color:var(--ink)}button{font:inherit;cursor:pointer}a{color:inherit;text-decoration:none}img{max-width:100%}:focus-visible{outline:3px solid var(--gold);outline-offset:4px}.wedding-site{overflow:clip;font-family:var(--hindi);-webkit-font-smoothing:antialiased}.wedding-site section[id]{scroll-margin-top:66px}
+.topbar{position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:25px;height:70px;padding:0 clamp(20px,4vw,68px);border-bottom:1px solid #e6bf7c55;background:var(--deep);color:#f6dfb5}.topbar-brand{font:600 1.55rem var(--latin);letter-spacing:.06em}.topbar-brand span{color:var(--gold);font-size:.45em;vertical-align:middle}.topbar nav{display:flex;gap:35px;color:#f7e9ce;font-size:.85rem}.topbar nav a{transition:color .2s}.topbar nav a:hover{color:var(--gold)}.topbar-date{font:700 .75rem var(--latin);letter-spacing:.18em}
+.greeting-hero{position:relative;display:flex;align-items:center;min-height:min(850px,calc(100svh - 70px));overflow:hidden;background:#e6c295}.hero-art{position:absolute;inset:0;background:url('/images/royal-banner-art.webp') center/cover no-repeat}.hero-copy{position:relative;z-index:2;width:53%;padding:42px 4% 75px 8%;text-align:center;color:var(--ink);animation:hero-copy-in 1s .15s both}.auspicious{margin:0 0 8px;color:#8a5530;font-size:.96rem;font-weight:700}.hero-ganesh{display:block;width:77px;height:77px;margin:0 auto;color:#a7753c;filter:drop-shadow(0 2px 3px #8e5c3950)}.hero-welcome{margin:5px 0;color:#8d4d26;font-size:clamp(1.4rem,2.8vw,2.5rem);font-weight:600}.hero-overline{margin:0 0 13px;color:#794b3b;font-size:.88rem;letter-spacing:.04em}.hero-copy h1{display:flex;flex-direction:column;align-items:center;margin:0;color:#5b1223;font:600 clamp(3.5rem,5.5vw,6.2rem)/.88 var(--latin);letter-spacing:-.045em}.hero-copy h1 span{white-space:nowrap}.hero-copy h1 em{margin:3px 0 9px;color:#b3843e;font:italic 400 .58em var(--latin)}.hero-hindi{margin:20px 0 11px;color:#5d2831;font-size:clamp(1.03rem,1.8vw,1.45rem);font-weight:600}.hero-hindi span{color:#a87331}.hero-date{margin:0;color:#6c3c39;font-size:.9rem;font-weight:600}.hero-date span{padding:0 7px;color:#bd8c4c}.open-button{display:inline-flex;align-items:center;justify-content:center;gap:20px;margin-top:25px;padding:14px 28px;border:1px solid #ca9c60;background:#5a1022;color:#fff2d9;box-shadow:0 9px 25px #31091445;transition:transform .25s,background .25s}.open-button:hover{transform:translateY(-3px);background:#7d2535}.hero-couple{position:absolute;z-index:1;top:13%;right:7.4%;width:31%;height:71%;overflow:hidden;border:6px solid #dda95e;border-radius:45% 45% 2px 2px / 27% 27% 2px 2px;box-shadow:0 0 0 2px #6e2a20,0 25px 55px #24050970;animation:hero-photo-in 1s .35s both}.hero-couple img{object-fit:cover;object-position:center 29%}.hero-scroll-note{position:absolute;z-index:2;bottom:19px;left:50%;display:flex;align-items:center;gap:8px;transform:translateX(-50%);color:#6d332c;font:700 .68rem var(--latin);letter-spacing:.18em}.hero-petals{position:absolute;inset:0;overflow:hidden;pointer-events:none}.hero-petals span{position:absolute;top:-8%;color:#8b2229a8;font-size:15px;animation:petal-fall 9s linear infinite}@keyframes hero-copy-in{from{opacity:0;transform:translateY(35px)}to{opacity:1;transform:none}}@keyframes hero-photo-in{from{opacity:0;transform:translateY(25px) scale(.95)}to{opacity:1;transform:none}}@keyframes petal-fall{to{transform:translate3d(40px,110vh,0) rotate(300deg);opacity:0}}
+.invitation-section{position:relative;padding:clamp(70px,8vw,115px) 20px 105px;background:radial-gradient(circle at 50% 15%,#873045,var(--wine) 52%,#310817);color:#fff4df}.invitation-section:before{position:absolute;inset:20px;border:1px solid #c6955452;pointer-events:none;content:""}.section-intro{position:relative;z-index:1;max-width:730px;margin:0 auto 44px;text-align:center}.eyebrow{color:#d9ae70;font:700 .75rem var(--latin);letter-spacing:.23em}.section-intro h2{margin:10px 0;color:#fff2d9;font-size:clamp(3.2rem,6vw,5.3rem);font-weight:500;line-height:1.3}.section-intro h2 em{color:#f0c783;font-style:normal}.section-intro p{margin:0;color:#f3ddc2;line-height:1.75}.invitation-book{position:relative;max-width:1050px;margin:auto;filter:drop-shadow(0 25px 35px #1c03109a);perspective:1000px}.scroll-rod{position:relative;z-index:2;height:26px;margin:0 -17px;border:1px solid #6b3d11;border-radius:14px;background:linear-gradient(#f6dc93 0%,#a76a24 23%,#e8be67 50%,#7c4316 78%,#edc874 100%);box-shadow:0 5px 15px #23070b80}.scroll-rod:before,.scroll-rod:after{position:absolute;top:-6px;width:23px;height:36px;border:1px solid #7e4b23;border-radius:6px;background:linear-gradient(90deg,#a86c2b,#f4d48e,#9c5e1b);content:""}.scroll-rod:before{left:-7px}.scroll-rod:after{right:-7px}.scroll-rod-bottom{margin-top:-3px}.book-paper{position:relative;min-height:670px;padding:29px clamp(25px,5vw,60px) 22px;border-inline:4px solid #c99f60;background:linear-gradient(135deg,#fff9e9,#f5e6c8 50%,#fff7e4);color:var(--ink);box-shadow:inset 0 0 65px #af845538}.book-paper:before{position:absolute;inset:13px;border:1px solid #b8915a80;pointer-events:none;content:""}.book-topline{display:flex;flex-direction:column;align-items:center;color:#925c30;font-size:.88rem;font-weight:700}.book-ganesh{width:54px;height:54px;color:#9e6535}.book-tabs{position:relative;z-index:1;display:flex;justify-content:center;gap:5px;max-width:620px;margin:20px auto 0;border-bottom:1px solid #c5a16d}.book-tabs button{flex:1;max-width:180px;padding:11px 7px;border:0;border-bottom:3px solid transparent;background:transparent;color:#866859;font-size:.89rem}.book-tabs button[aria-selected=true]{border-color:#8e2535;color:#681b2b;font-weight:700}.book-panel{position:relative;z-index:1;min-height:455px;padding:20px 8px 10px;outline-offset:2px}.book-page{min-height:425px;text-align:center;animation:page-enter .5s ease-out both}.card-kicker{margin:5px 0 9px;color:#ad7a3e;font-size:.78rem;font-weight:700;letter-spacing:.12em}.book-page h3{margin:0;color:#6c2030;font-size:clamp(1.8rem,3vw,2.7rem);font-weight:500;line-height:1.45}.book-page h3 span{color:#ac7b3c}.book-divider{display:block;width:210px;height:33px;margin:10px auto;color:#bc8f51}.card-message{max-width:670px;margin:0 auto 24px;color:#6b514a;line-height:1.8}.family-pair{display:grid;grid-template-columns:1fr 40px 1fr;align-items:center;gap:15px}.family-pair article{min-height:205px;padding:22px 17px;border:1px solid #d4b78d;background:#fffaf0a6}.family-pair article>span,.venue-contacts>span{color:#9b6e38;font-size:.76rem;font-weight:700;letter-spacing:.12em}.family-pair h4{margin:9px 0;color:#702638;font-size:1.3rem;font-weight:600}.family-pair p,.family-pair small{display:block;margin:0;color:#675149;line-height:1.65}.family-pair small{margin-top:8px;font-size:.75rem}.family-amp{color:#be914d;font-size:2rem}.card-bottom-blessing{margin:20px 0 0;color:#956338;font-size:.95rem;font-weight:700}.book-event-list{margin-top:20px;border-top:1px solid #d4b78d;text-align:left}.book-event{display:grid;grid-template-columns:34px 1fr 155px;gap:14px;align-items:center;padding:11px 4px;border-bottom:1px solid #d4b78d}.event-index{color:#ae8248;font:italic 1.3rem var(--latin)}.book-event h4{margin:0;color:#692638;font-size:1.05rem}.book-event p{margin:2px 0;color:#6e554a;font-size:.77rem}.book-event small{color:#887466;font-size:.69rem;line-height:1.35}.event-date{display:flex;flex-direction:column;gap:3px;color:#70483f;font-size:.77rem;text-align:right}.event-date strong{font-weight:700}.book-venue-page>p:not(.card-kicker):not(.card-bottom-blessing){max-width:730px;margin:14px auto;color:#6f564b;line-height:1.8}.book-venue-page .venue-feature{margin-top:27px!important;color:#9d6b34!important;font-weight:700}.venue-detail{display:flex;align-items:center;justify-content:center;gap:11px;max-width:720px;margin:25px auto 15px;padding:18px;border:1px solid #d5b78a;background:#fffaf2;color:#602c33;line-height:1.65}.venue-detail svg{flex:none;color:#9c6937}.card-link{display:inline-flex;align-items:center;gap:10px;padding-bottom:4px;border-bottom:1px solid #9d6937;color:#722737;font-size:.88rem;font-weight:700}.venue-contacts{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 25px;margin:30px auto 0;padding-top:20px;border-top:1px solid #d5b78a}.venue-contacts a{display:inline-flex;align-items:center;gap:5px;color:#652b36;font-size:.88rem}.book-pagination{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:32px;margin:7px auto 0;color:#7d553d;font:700 .86rem var(--latin);letter-spacing:.14em}.book-pagination button{display:grid;place-items:center;width:37px;height:37px;border:1px solid #bb975f;border-radius:50%;background:#fff9ec;color:#6b2330}.book-pagination button:disabled{opacity:.35;cursor:default}.invitation-book.is-open .book-paper{animation:scroll-open .9s cubic-bezier(.2,.75,.2,1) both}@keyframes scroll-open{from{clip-path:inset(0 0 85% 0);transform:scaleY(.8);transform-origin:top}to{clip-path:inset(0);transform:scaleY(1)}}@keyframes page-enter{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+.date-section{padding:85px 20px;background:#360a16;color:#fff0d7;text-align:center}.date-inner{max-width:900px;margin:auto}.date-inner h2{margin:13px 0 5px;font-size:clamp(2rem,4vw,3.5rem);font-weight:500}.date-inner p{color:#e7c7a7}.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:600px;margin:28px auto 0}.countdown-unit{padding:15px 8px;border:1px solid #d7ac6866}.countdown-unit strong{display:block;font:500 clamp(1.7rem,4vw,3rem) var(--latin);font-variant-numeric:tabular-nums}.countdown-unit span{color:#ddb889;font-size:.76rem}
+.closing-section{position:relative;min-height:600px;padding:95px 20px;overflow:hidden;background:#3e0c18;text-align:center}.closing-art{position:absolute;inset:0;background:url('/images/royal-card-art.webp') center 35%/auto 120% no-repeat;opacity:.32}.closing-section:after{position:absolute;inset:0;background:linear-gradient(#340a17a8,#340a17c9);content:""}.closing-content{position:relative;z-index:1;max-width:670px;margin:auto;color:#fff5e3}.closing-ganesh{display:block;width:75px;height:75px;margin:0 auto 17px;color:#e4bd7e}.closing-content h2{margin:13px 0;font-size:clamp(3rem,6vw,5rem);font-weight:500;line-height:1.25}.closing-content h2 em{color:#e9bd7d;font-style:normal}.closing-content p{margin:0 auto 25px;color:#f1d9c2;line-height:1.8}.closing-map{display:inline-flex;align-items:center;gap:10px;padding:13px 20px;border:1px solid #d5ad72;color:#fff4e3}.closing-map:hover{background:#ffffff20}.closing-signature{display:block;margin-top:30px;color:#eac997}.site-footer{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px clamp(25px,5vw,65px);background:#22060f;color:#f2dabe}.site-footer>span{font:600 1.5rem var(--latin)}.site-footer i{color:var(--gold);font-size:.45em;font-style:normal;vertical-align:middle}.site-footer p{margin:0;font-size:.82rem}.site-footer a{font-size:.8rem}
+.whatsapp-widget{position:fixed;z-index:30;right:max(18px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));font-family:var(--hindi)}.whatsapp-toggle{display:flex;align-items:center;gap:9px;padding:13px 18px;border:1px solid #bcdfbf;border-radius:999px;background:#176c43;color:#fff;box-shadow:0 9px 28px #17060f65;font-size:.85rem;font-weight:700}.whatsapp-toggle:hover{background:#0e5d36}.whatsapp-panel{width:min(300px,calc(100vw - 36px));margin-bottom:12px;overflow:hidden;border:1px solid #d4b68a;background:#fff9ee;box-shadow:0 15px 40px #17060f75;color:#532431}.whatsapp-panel-heading{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:#5b1727;color:#fff3df;font-size:.85rem}.whatsapp-panel-heading button{display:grid;place-items:center;border:0;background:transparent;color:inherit}.whatsapp-panel>a{display:flex;align-items:center;gap:11px;padding:14px 16px;border-top:1px solid #ead9bf;color:#335b38}.whatsapp-panel>a:hover{background:#f1e9d8}.whatsapp-panel>a>span{display:flex;flex:1;flex-direction:column;color:#502b31;font-size:.84rem;font-weight:700}.whatsapp-panel small{color:#806961;font-size:.73rem;font-weight:400}
+.reveal-ready{opacity:0;transform:translateY(20px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1)}.reveal-ready.is-visible{opacity:1;transform:none}
+@media(max-width:900px){.hero-copy{width:57%;padding-left:5%}.hero-couple{right:5%;width:31%;height:62%;top:20%}.hero-copy h1{font-size:clamp(2.8rem,6vw,4.4rem)}}
+@media(max-width:700px){.topbar{height:58px;padding:0 17px}.topbar nav{gap:14px;font-size:.73rem}.topbar-date{display:none}.greeting-hero{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-height:900px;padding:94px 16px 90px}.hero-art{background-image:url('/images/royal-card-art.webp');background-size:100% 100%}.hero-copy{width:100%;max-width:500px;padding:0 18px;animation:none}.auspicious{font-size:.79rem}.hero-ganesh{width:55px;height:55px}.hero-welcome{font-size:1.5rem}.hero-overline{font-size:.73rem}.hero-copy h1{font-size:clamp(2.8rem,11vw,4.5rem)}.hero-hindi{margin:10px 0;font-size:1rem}.hero-date{font-size:.74rem}.open-button{margin-top:16px;padding:11px 17px;font-size:.85rem}.hero-couple{position:relative;top:auto;right:auto;width:min(55vw,240px);height:310px;margin:34px auto 0;border-width:4px;animation:none}.hero-scroll-note{bottom:42px;color:#6b3531;font-size:.55rem}.hero-petals{opacity:.45}.invitation-section{padding:70px 15px}.invitation-section:before{inset:10px}.book-paper{min-height:700px;padding:25px 16px 17px}.book-panel{padding-inline:0}.book-page{min-height:500px}.book-page h3{font-size:1.9rem}.family-pair{grid-template-columns:1fr;gap:9px}.family-amp{font-size:1rem}.family-pair article{min-height:0;padding:13px}.family-pair h4{font-size:1.1rem}.family-pair p{font-size:.8rem}.family-pair small{font-size:.68rem}.card-message{font-size:.84rem}.book-tabs button{font-size:.75rem}.book-event{grid-template-columns:24px 1fr;gap:5px 8px;padding:10px 2px}.book-event h4{font-size:.94rem}.book-event p,.book-event small{font-size:.69rem}.event-date{grid-column:2;flex-direction:row;gap:12px;text-align:left;font-size:.68rem}.book-venue-page>p:not(.card-kicker):not(.card-bottom-blessing){font-size:.85rem}.venue-detail{font-size:.82rem}.gallery-frame{grid-template-columns:1fr}.gallery-image{min-height:430px}.gallery-caption{padding:26px}.gallery-controls{margin-top:16px}.site-footer{flex-direction:column;text-align:center}.whatsapp-toggle span{display:none}.whatsapp-toggle{width:50px;height:50px;justify-content:center;padding:0}.countdown{gap:5px}.countdown-unit{padding:12px 3px}}
+@media(max-width:380px){.greeting-hero{min-height:850px;padding-top:80px}.hero-couple{height:260px;margin-top:25px}.book-page h3{font-size:1.65rem}.book-paper{padding-inline:12px}.book-tabs button{font-size:.68rem}.book-event small{display:none}.section-intro h2{font-size:2.7rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.hero-petals{display:none}.reveal-ready{opacity:1;transform:none}}
+
+/* Opening scroll */
+.opening-cover {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  overflow: auto;
+  background: radial-gradient(circle at center, #651b2a, #25020b 78%);
+  font-family: var(--hindi);
+  transition: opacity .75s ease, visibility .75s ease;
+}
+.opening-overline,
+.opening-bottom {
+  margin: 0;
+  color: #e2c18a;
+  text-align: center;
+  font: 700 .67rem var(--latin);
+  letter-spacing: .22em;
+}
+.opening-bottom { font-family: var(--hindi); letter-spacing: .08em; }
+.opening-progress-wrap { position: absolute; bottom: 10px; left: 50%; display: flex; width: min(280px, 72vw); height: 31px; flex-direction: column; justify-content: center; gap: 6px; opacity: 0; color: #f3d9aa; font-size: .7rem; text-align: center; transform: translateX(-50%); pointer-events: none; transition: opacity .35s ease; }
+.opening-progress-wrap.is-active { opacity: 1; }
+.opening-progress-track { display: block; height: 3px; overflow: hidden; border-radius: 99px; background: #d9ae7040; }
+.opening-progress-track > span { display: block; width: 100%; height: 100%; background: linear-gradient(90deg, #bc823f, #ffe9b8); transform: scaleX(0); transform-origin: left; }
+.opening-progress-wrap.is-active .opening-progress-track > span { animation: opening-progress 1.8s linear both; }
+@keyframes opening-progress { to { transform: scaleX(1); } }
+.opening-card {
+  position: relative;
+  display: block;
+  flex: none;
+  width: min(90vw, 475px, 60svh);
+  aspect-ratio: 2 / 3;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: url('/images/opening-scroll.webp') center / 100% 100% no-repeat;
+  color: #5c1b2b;
+  text-align: center;
+  filter: drop-shadow(0 18px 42px #140107c2);
+  cursor: pointer;
+  transition: transform .75s cubic-bezier(.22,.7,.2,1), opacity .65s ease;
+  animation: opening-arrive .8s ease-out both;
+}
+.opening-card:disabled { cursor: default; }
+.opening-invocation {
+  display: block;
+  margin-bottom: 1px;
+  color: #6b2633;
+  font-size: clamp(.8rem, 1.8vw, 1rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+.opening-copy {
+  position: absolute;
+  top: 43%;
+  left: 14%;
+  display: flex;
+  width: 72%;
+  height: 44%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(2px, .5svh, 7px);
+}
+.opening-welcome { color: #986033; font-size: clamp(.85rem, 2.2vw, 1.2rem); }
+.opening-heading { color: #792538; font-size: clamp(1.25rem, 4vw, 2rem); font-weight: 700; }
+.opening-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #471422;
+  font: 600 clamp(2.25rem, 6vw, 3.4rem)/.86 var(--latin);
+  white-space: nowrap;
+}
+.opening-names i { margin: 2px 0; color: #aa783c; font-size: .67em; font-weight: 400; }
+.opening-hindi { margin-top: 3px; color: #71323c; font-size: clamp(.65rem, 1.7vw, .86rem); font-weight: 600; }
+.opening-date { color: #80543a; font-size: clamp(.66rem, 1.7vw, .85rem); font-weight: 700; white-space: nowrap; }
+.opening-date b { color: #bd8e50; }
+.opening-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  padding: 6px 10px;
+  border: 1px solid #9f6d40;
+  color: #672436;
+  font-size: clamp(.62rem, 1.7vw, .8rem);
+  font-weight: 700;
+}
+.opening-cover.is-opening { pointer-events: none; transition: none; }
+.opening-cover.is-opening .opening-card { transform-origin: center top; transition: none; animation: none; }
+.opening-cover.is-opening .opening-overline,
+.opening-cover.is-opening .opening-bottom { opacity: 0; transition: opacity .25s ease; }
+@keyframes opening-arrive { from { opacity: 0; transform: translateY(20px) scale(.96); } to { opacity: 1; transform: none; } }
+
+/* Motion and finish */
+.scroll-progress {
+  position: fixed;
+  z-index: 60;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, #bd813e, #ffe3a4, #b96555);
+  box-shadow: 0 0 12px #eec37b;
+  pointer-events: none;
+}
+.opening-sparkles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.opening-sparkles span {
+  position: absolute;
+  color: #f2c77b;
+  font-size: clamp(8px, 1.3vw, 14px);
+  opacity: 0;
+  text-shadow: 0 0 12px #eab86f;
+  animation: sparkle-drift 5s ease-in-out infinite;
+}
+.opening-sparkles span:nth-child(3n) { color: #e5a6a6; animation-duration: 6.2s; }
+@keyframes sparkle-drift {
+  0%, 100% { opacity: 0; transform: translateY(12px) scale(.5) rotate(0); }
+  45% { opacity: .8; transform: translateY(-12px) scale(1) rotate(35deg); }
+}
+.opening-card { transition-duration: .82s, .7s; }
+.opening-card:not(:disabled):hover { filter: drop-shadow(0 22px 48px #120106d9) brightness(1.045); }
+.opening-card:not(:disabled):hover .opening-action { background: #7a2635; color: #fff5e7; }
+.opening-action { transition: background .25s ease, color .25s ease; }
+.opening-action svg { animation: invitation-nudge 1.8s ease-in-out infinite; }
+@keyframes invitation-nudge { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(4px); } }
+.opening-copy { top: 40%; height: 46%; }
+.opening-names { font-size: clamp(2.1rem, 10vw, 2.85rem); line-height: .9; letter-spacing: -.025em; }
+.opening-heading { letter-spacing: .03em; }
+.opening-copy > span { animation: opening-text-in .7s cubic-bezier(.22,1,.36,1) both; }
+.opening-copy > span:nth-child(1) { animation-delay: .18s; }
+.opening-copy > span:nth-child(2) { animation-delay: .28s; }
+.opening-copy > span:nth-child(3) { animation-delay: .38s; }
+.opening-copy > span:nth-child(4) { animation-delay: .5s; }
+.opening-copy > span:nth-child(5) { animation-delay: .62s; }
+.opening-copy > span:nth-child(6) { animation-delay: .72s; }
+.opening-copy > span:nth-child(7) { animation-delay: .82s; }
+@keyframes opening-text-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.wedding-site .hero-copy,
+.wedding-site .hero-couple { animation: none; }
+.wedding-site.is-entered .hero-copy { animation: none; }
+.wedding-site.is-entered .hero-couple { animation: hero-photo-in 1.2s .23s both; }
+.hero-art { animation: hero-art-breathe 18s ease-in-out infinite alternate; }
+@keyframes hero-art-breathe { from { transform: scale(1); } to { transform: scale(1.055); } }
+.hero-couple::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(110deg, transparent 25%, #fff8dc30 48%, transparent 65%);
+  transform: translateX(-120%);
+  animation: photo-glimmer 9s 2s ease-in-out infinite;
+  content: "";
+  pointer-events: none;
+}
+@keyframes photo-glimmer { 0%, 78%, 100% { transform: translateX(-120%); } 88% { transform: translateX(120%); } }
+.hero-scroll-note svg { animation: invitation-nudge 1.8s ease-in-out infinite; }
+.open-button svg { transition: transform .25s ease; }
+.open-button:hover svg { transform: translateY(4px); }
+.book-tabs button { transition: color .25s ease, background .25s ease, border-color .25s ease; }
+.book-tabs button:hover { background: #f5e4c57d; color: #6b2330; }
+.book-pagination button:not(:disabled) { transition: transform .25s ease, background .25s ease; }
+.book-pagination button:not(:disabled):hover { transform: scale(1.1); background: #f5e2be; }
+.ceremony-card { overflow: hidden; transition: transform .55s cubic-bezier(.2,.7,.2,1), box-shadow .55s ease, opacity .75s ease; }
+.ceremony-card.reveal-ready { transform: translateY(35px) scale(.98); }
+.ceremony-card.reveal-ready.is-visible { transform: none; }
+.ceremony-card.reveal-ready.is-visible:hover { transform: translateY(-8px); box-shadow: 0 28px 50px #5a2b2733; }
+.ceremony-card::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 28%, #fff8e458 48%, transparent 68%);
+  transform: translateX(-125%);
+  transition: transform .85s ease;
+  content: "";
+  pointer-events: none;
+}
+.ceremony-card:hover::before { transform: translateX(125%); }
+.ceremony-card:nth-child(even).reveal-ready { transition-delay: .12s; }
+.ceremony-card:nth-child(even).reveal-ready.is-visible:hover { transition-delay: 0s; }
+.ceremony-divider { animation: divider-glow 3s ease-in-out infinite; }
+@keyframes divider-glow { 50% { opacity: .5; transform: scale(1.2); } }
+.countdown-unit { background: linear-gradient(145deg, #ffffff0a, #ffffff00); transition: transform .3s ease, border-color .3s ease; }
+.countdown-unit:hover { transform: translateY(-4px); border-color: #e3be82; }
+.whatsapp-toggle { animation: chat-breathe 4s ease-in-out infinite; }
+@keyframes chat-breathe { 50% { box-shadow: 0 9px 28px #17060f65, 0 0 0 8px #3ea86a22; } }
+.whatsapp-panel { transform-origin: bottom right; animation: chat-panel-in .25s ease-out both; }
+@keyframes chat-panel-in { from { opacity: 0; transform: translateY(9px) scale(.96); } to { opacity: 1; transform: none; } }
+@media (max-width: 700px) {
+  .opening-names { font-size: clamp(2.1rem, 10vw, 2.85rem); }
+  .ceremony-card.reveal-ready.is-visible:hover { transform: none; }
+}
+@media (max-width: 380px) { .opening-names { font-size: 2.1rem; } }
+@media (prefers-reduced-motion: reduce) {
+  .opening-sparkles, .hero-petals { display: none; }
+  .opening-cover.is-opening { animation: none; opacity: 0; }
+}
+
+/* Ceremony cards */
+.ceremonies-section {
+  padding: clamp(75px, 8vw, 120px) 20px;
+  background: #f7ead5;
+}
+.ceremonies-section .section-intro h2 { color: #612232; }
+.ceremonies-section .section-intro p { color: #735b54; }
+.ceremonies-section .eyebrow { color: #95643d; }
+.ceremony-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+  width: min(100%, 1050px);
+  margin: 0 auto;
+}
+.ceremony-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 550px;
+  padding: 38px clamp(28px, 4vw, 56px);
+  border: 1px solid #c29c68;
+  background-color: #fff5df;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 18px 38px #5a2b271e;
+  text-align: center;
+}
+.ceremony-card::after {
+  position: absolute;
+  inset: 13px;
+  border: 1px solid #a7774866;
+  pointer-events: none;
+  content: "";
+}
+.ceremony-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+  margin-top: 15%;
+  padding: 14px 8px;
+  color: #5a2934;
+  text-shadow: 0 1px 12px #fff5dfbf;
+}
+.ceremony-label { color: #9c6736; font-size: .76rem; font-weight: 700; letter-spacing: .12em; }
+.ceremony-copy h3 { margin: 10px 0 4px; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; }
+.ceremony-copy p { margin: 0; color: #6f544b; font-size: .88rem; line-height: 1.7; }
+.ceremony-divider { margin: 13px 0; color: #ad7a43; }
+.ceremony-copy strong { font-size: .96rem; }
+.ceremony-copy>span:not(.ceremony-label) { margin-top: 6px; font-size: .92rem; }
+.ceremony-copy small { margin-top: 12px; color: #735c50; font-size: .73rem; line-height: 1.55; }
+.ceremony-bandoli .ceremony-copy { margin-top: 8%; color: #512b52; }
+.ceremony-bandoli .ceremony-copy p,
+.ceremony-bandoli .ceremony-copy small { color: #593d59; }
+.ceremony-hast-milap .ceremony-copy { margin-top: -4%; }
+.ceremony-priti .ceremony-copy { margin-top: 0; }
+.ceremony-haldi {
+  grid-column: 1 / -1;
+  min-height: 350px;
+  background: linear-gradient(110deg, #e9aa3ca8, #fff4d0a6), url('/images/priti-card.webp') center / cover;
+}
+.ceremony-haldi .ceremony-copy { margin: 0; }
+
+@media (max-width: 700px) {
+  .ceremony-grid { grid-template-columns: 1fr; gap: 19px; max-width: 480px; }
+  .ceremony-card { min-height: 510px; padding: 35px 32px; }
+  .ceremony-haldi { grid-column: auto; min-height: 300px; }
+  .ceremony-copy { max-width: 275px; }
+}
+@media (max-width: 380px) {
+  .opening-copy { top: 42%; height: 45%; }
+  .opening-names { font-size: 2.1rem; }
+  .ceremony-card { min-height: 480px; }
+}
+
+/* The supplied banner is the single photo source at every screen size. */
+.greeting-hero {
+  height: min(56.28vw, 850px);
+  min-height: 560px;
+  background: #6f3d2a;
+}
+.greeting-hero .hero-art {
+  background-image: url('/images/couple-banner-face-refined.png');
+  background-position: center;
+  animation: none;
+}
+.greeting-hero .hero-couple { display: none; }
+.greeting-hero .hero-copy {
+  position: absolute;
+  right: auto;
+  bottom: 12%;
+  left: 15%;
+  width: auto;
+  padding: 0;
+  animation: none;
+}
+.greeting-hero .hero-copy > :not(.open-button) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.greeting-hero .open-button {
+  margin: 0;
+  border-color: #ffe1b099;
+  background: #481e19e6;
+  box-shadow: 0 12px 30px #32120d7a;
+}
+.greeting-hero .open-button:hover { background: #622a20; }
+.greeting-hero .hero-scroll-note { color: #ffead4; text-shadow: 0 2px 8px #4a2118; }
+.greeting-hero .hero-petals { opacity: .22; }
+
+@media (max-width: 700px) {
+  .greeting-hero {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    padding: 0 0 34px;
+    background: #6f3d2a;
+  }
+  .greeting-hero .hero-copy {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    order: 1;
+    width: 100%;
+    max-width: none;
+    padding: 27px 22px 24px;
+    color: #fff0dc;
+    animation: hero-copy-in .8s ease-out both;
+  }
+  .greeting-hero .hero-copy > :not(.open-button) {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+  }
+  .greeting-hero .auspicious,
+  .greeting-hero .hero-overline,
+  .greeting-hero .hero-date { color: #f7ddbc; }
+  .greeting-hero .hero-copy .hero-ganesh { width: 55px; height: 55px; color: #edc486; }
+  .greeting-hero .hero-welcome { color: #f5c989; }
+  .greeting-hero .hero-copy h1 { color: #fff4e3; font-size: clamp(2.85rem, 11vw, 4rem); }
+  .greeting-hero .hero-copy h1 em { color: #f4cb91; }
+  .greeting-hero .hero-hindi { color: #fff0dd; }
+  .greeting-hero .hero-hindi span { color: #f4cb91; }
+  .greeting-hero .open-button { margin-top: 18px; background: #3c1816; }
+  .greeting-hero .hero-art {
+    position: relative;
+    order: 2;
+    inset: auto;
+    width: 100%;
+    height: clamp(500px, 135vw, 650px);
+    background-size: auto 100%;
+    background-position: 83% center;
+    box-shadow: 0 16px 30px #33150f65;
+  }
+  .greeting-hero .hero-petals { z-index: 3; }
+  .greeting-hero .hero-scroll-note { z-index: 4; bottom: 42px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .greeting-hero .hero-copy { animation: none; }
+}
+
+/* Family invitation and Anime.js page motion */
+.book-page { animation: none; }
+.family-invitations-section {
+  position: relative;
+  padding: clamp(74px, 8vw, 112px) 20px;
+  background: radial-gradient(circle at 50% 0%, #fff8e8, #f2dfc2 76%);
+  color: #582636;
+}
+.family-invitations-section::before {
+  position: absolute;
+  inset: 18px;
+  border: 1px solid #c9945861;
+  content: "";
+  pointer-events: none;
+}
+.family-invitations-section .section-intro h2 { color: #642537; }
+.family-invitations-section .section-intro h2 em { color: #ad713b; }
+.family-invitations-section .section-intro p { color: #73574e; }
+.family-invitation-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  width: min(100%, 1120px);
+  margin: 0 auto;
+}
+.family-invite-card {
+  min-height: 295px;
+  padding: 30px 25px;
+  border: 1px solid #cda674;
+  background: linear-gradient(160deg, #fffaf0, #f8ecd6);
+  box-shadow: 0 14px 34px #5522151c;
+  text-align: center;
+}
+.family-invite-card.anime-ready { opacity: 0; }
+.ceremony-card.anime-ceremony-ready .ceremony-copy { opacity: 0; }
+.family-invite-flower { color: #b77c43; font-size: 1.75rem; }
+.family-invite-card h3 { margin: 6px 0; color: #752d3d; font-size: 1.55rem; }
+.family-invite-card p { margin: 0 0 19px; color: #775948; font-size: .94rem; }
+.family-name-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.family-person {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid #d7b98c;
+  border-radius: 999px;
+  background: #fff9ed;
+  color: #5e3440;
+  font-size: .88rem;
+}
+@media (max-width: 850px) { .family-invitation-grid { grid-template-columns: 1fr; max-width: 520px; } }
+
+/* Blessings and the family's supplied invitation artwork */
+.blessings-section {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 440px);
+  align-items: center;
+  gap: clamp(38px, 7vw, 110px);
+  padding: clamp(70px, 8vw, 120px) max(24px, calc((100vw - 1160px) / 2));
+  overflow: hidden;
+  background: radial-gradient(circle at 15% 30%, #fff9e9, #f4e6cb 68%, #e9cf9f);
+  color: #562331;
+}
+.blessings-section::before,
+.blessings-section::after {
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  border: 1px solid #b9854d45;
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+.blessings-section::before { top: -190px; left: -130px; box-shadow: 0 0 0 18px #b9854d0a, 0 0 0 38px #b9854d0a; }
+.blessings-section::after { right: -170px; bottom: -220px; box-shadow: 0 0 0 18px #b9854d0a, 0 0 0 38px #b9854d0a; }
+.blessings-copy { position: relative; z-index: 1; max-width: 590px; text-align: center; }
+.blessings-copy .eyebrow { color: #9e6a3c; font-family: var(--hindi); font-size: .9rem; letter-spacing: .14em; }
+.blessings-ganesh { display: block; width: 72px; height: 72px; margin: 17px auto 10px; color: #a56535; filter: drop-shadow(0 4px 8px #985b2c45); }
+.blessings-ganesh { animation: sacred-glow 4.5s ease-in-out infinite; }
+@keyframes sacred-glow { 50% { filter: drop-shadow(0 3px 13px #b68353a6); transform: translateY(-3px); } }
+.blessings-copy h2 { margin: 8px 0 18px; font-size: clamp(2.8rem, 4.6vw, 4.6rem); font-weight: 500; line-height: 1.2; }
+.blessings-copy h2 em { color: #a56637; font-style: normal; }
+.blessings-greeting { max-width: 540px; margin: 0 auto 14px; color: #7b2c3d; font-size: clamp(1.2rem, 1.8vw, 1.55rem); font-weight: 700; line-height: 1.65; }
+.blessings-message { max-width: 550px; margin: 0 auto; color: #705248; font-size: 1rem; line-height: 1.95; }
+.blessings-invocations { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 30px 0 25px; }
+.blessing-invocation { display: inline-block; padding: 8px 12px; border: 1px solid #bd955f; border-radius: 999px; background: #fff8eaba; color: #743143; box-shadow: 0 4px 12px #8b57301c; font-size: .79rem; font-weight: 700; white-space: nowrap; }
+.blessings-signature { display: block; color: #986635; font-size: .95rem; font-weight: 700; }
+.original-invitation-art { position: relative; z-index: 1; display: block; width: 100%; padding: 9px; border: 1px solid #be8a4c; background: #fff7e8; box-shadow: 0 22px 55px #63382045, 0 0 0 7px #fff9ed9c; text-align: center; transition: transform .55s cubic-bezier(.22,1,.36,1), box-shadow .55s ease; }
+.original-invitation-art:hover { transform: translateY(-8px) rotate(1deg); box-shadow: 0 30px 65px #63382055, 0 0 0 7px #fff9ed9c; }
+.original-invitation-art img { display: block; width: 100%; height: auto; }
+.original-invitation-art > span { display: inline-flex; align-items: center; gap: 7px; padding: 12px 5px 4px; color: #71313b; font-size: .84rem; font-weight: 700; }
+.original-invitation-art > span svg { transition: transform .3s ease; }
+.original-invitation-art:hover > span svg { transform: translateX(4px); }
+.family-invite-card { position: relative; overflow: hidden; }
+.family-invite-card::before { position: absolute; top: -35px; right: -20px; width: 110px; height: 110px; border: 1px solid #bd8c5366; border-radius: 50%; box-shadow: 0 0 0 10px #bd8c530b, 0 0 0 20px #bd8c530b; content: ""; pointer-events: none; }
+.family-person { line-height: 1.5; }
+@media (max-width: 900px) { .blessings-section { grid-template-columns: minmax(0, 1fr) minmax(250px, 330px); gap: 30px; } }
+@media (max-width: 760px) { .blessings-section { grid-template-columns: 1fr; justify-items: center; gap: 45px; padding: 75px 23px 85px; } .blessings-copy { max-width: 540px; } .original-invitation-art { max-width: 420px; } }
+@media (max-width: 400px) { .blessings-invocations { gap: 8px; } .blessing-invocation { font-size: .72rem; } .opening-invocation { font-size: .78rem; } }
+@media (prefers-reduced-motion: reduce) { .original-invitation-art { transition: none; } }
+
+/* Mobile navigation and reading comfort */
+.topbar-mobile-label,
+.mobile-dock,
+.book-swipe-hint { display: none; }
+@media (max-width: 700px) {
+  .opening-cover { gap: 11px; padding: 12px; }
+  .opening-card { width: min(94vw, 475px, 68svh); }
+  .opening-overline { font-size: .75rem; letter-spacing: .16em; }
+  .opening-bottom { font-size: .8rem; letter-spacing: .04em; }
+  .opening-invocation { font-size: .86rem; }
+  .opening-copy { top: 40.5%; height: 50%; justify-content: flex-start; gap: 4px; }
+  .opening-welcome { font-size: 1.08rem; }
+  .opening-heading { font-size: 1.55rem; line-height: 1.1; }
+  .opening-names { font-size: clamp(2.25rem, 10vw, 2.75rem); }
+  .opening-hindi { margin-top: 5px; color: #57212c; font-size: .82rem; }
+  .opening-date { color: #68412e; font-size: .82rem; }
+  .opening-action { min-height: 43px; margin-top: 10px; padding: 8px 15px; border-color: #6f2636; background: #70283a; color: #fff6e6; font-size: .92rem; line-height: 1.2; box-shadow: 0 5px 12px #5f263033; }
+  .wedding-site section[id] { scroll-margin-top: 16px; }
+  .topbar { height: 62px; padding-inline: 20px; }
+  .topbar nav { display: none; }
+  .topbar-mobile-label { display: block; color: #e9c894; font-size: .78rem; font-weight: 700; }
+  .greeting-hero .hero-copy { padding: 31px 22px 30px; }
+  .greeting-hero .hero-copy h1 { font-size: clamp(2.7rem, 11vw, 3.65rem); }
+  .greeting-hero .hero-date { font-size: .84rem; line-height: 1.6; }
+  .greeting-hero .open-button { min-height: 48px; padding-inline: 23px; }
+  .greeting-hero .hero-art { height: clamp(440px, 115vw, 590px); }
+  .greeting-hero .hero-scroll-note { bottom: 27px; font-size: .63rem; }
+  .blessings-section { padding-top: 62px; padding-bottom: 70px; }
+  .blessings-copy h2 { font-size: clamp(2.55rem, 9vw, 3.5rem); }
+  .blessings-message { font-size: .95rem; line-height: 1.85; }
+  .original-invitation-art > span { min-height: 44px; }
+  .invitation-section { padding-block: 64px 75px; }
+  .section-intro { margin-bottom: 30px; }
+  .section-intro h2 { font-size: clamp(2.55rem, 9vw, 3.7rem); }
+  .book-tabs { gap: 0; margin-top: 16px; }
+  .book-tabs button { min-height: 48px; padding: 12px 4px; font-size: .82rem; line-height: 1.2; }
+  .book-swipe-hint { display: block; margin: 10px 0 0; color: #937151; font-size: .7rem; text-align: center; }
+  .book-panel { padding-top: 15px; }
+  .book-pagination { gap: 38px; margin-top: 13px; }
+  .book-pagination button { width: 46px; height: 46px; }
+  .family-invitations-section { padding-block: 65px 78px; }
+  .family-invitation-grid { gap: 14px; }
+  .family-invite-card { min-height: 0; padding: 25px 18px 27px; }
+  .family-invite-card p { margin-bottom: 15px; line-height: 1.55; }
+  .family-name-list { gap: 8px; }
+  .family-person { max-width: 100%; overflow-wrap: anywhere; font-size: .85rem; }
+  .ceremonies-section { padding-block: 66px 78px; }
+  .ceremony-grid { gap: 15px; }
+  .ceremony-card { min-height: 440px; padding: 28px 26px; }
+  .ceremony-haldi { min-height: 275px; }
+  .ceremony-copy { margin-top: 9%; }
+  .ceremony-copy h3 { font-size: 1.85rem; }
+  .ceremony-copy small { font-size: .78rem; }
+  .whatsapp-widget { bottom: calc(88px + env(safe-area-inset-bottom)); right: 15px; }
+  .whatsapp-toggle { width: 48px; height: 48px; }
+  .whatsapp-panel { max-height: min(470px, calc(100svh - 190px)); overflow-y: auto; }
+  .site-footer { padding-bottom: calc(108px + env(safe-area-inset-bottom)); }
+  .mobile-dock {
+    position: fixed;
+    z-index: 35;
+    right: 10px;
+    bottom: calc(8px + env(safe-area-inset-bottom));
+    left: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 3px;
+    padding: 7px;
+    border: 1px solid #d7b783;
+    border-radius: 19px;
+    background: #fff8eefa;
+    box-shadow: 0 8px 30px #2b0d17a1;
+    backdrop-filter: blur(12px);
+  }
+  .mobile-dock a { display: flex; min-height: 53px; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border-radius: 12px; color: #775553; font-size: .7rem; font-weight: 700; transition: background .25s ease, color .25s ease, transform .25s ease; }
+  .mobile-dock a[aria-current="location"] { background: #662437; color: #fff3dd; box-shadow: 0 4px 10px #54202c44; }
+  .mobile-dock a:active { transform: scale(.94); }
+}
+@media (max-width: 380px) {
+  .opening-invocation { font-size: .78rem; }
+  .opening-names { font-size: 2.15rem; }
+  .opening-hindi, .opening-date { font-size: .75rem; }
+  .opening-action { min-height: 40px; font-size: .85rem; }
+  .topbar-mobile-label { font-size: .7rem; }
+  .greeting-hero .hero-copy h1 { font-size: 2.6rem; }
+  .book-tabs button { font-size: .75rem; }
+  .book-event small { display: block; }
+  .mobile-dock a { font-size: .64rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-dock a { transition: none; }
+}
+
+/* Sharing the full website */
+.share-section {
+  padding: clamp(66px, 7vw, 100px) 20px;
+  background: radial-gradient(circle at 50% 30%, #fff5df, #ecd1aa);
+  color: #5b2434;
+}
+.share-card {
+  position: relative;
+  width: min(100%, 850px);
+  margin: auto;
+  padding: clamp(34px, 5vw, 60px) 25px;
+  border: 1px solid #b8874f;
+  background: #fff9ecdd;
+  box-shadow: 0 20px 50px #6738222c;
+  text-align: center;
+}
+.share-card::before { position: absolute; inset: 11px; border: 1px solid #c9a57299; content: ""; pointer-events: none; }
+.share-symbol { display: block; margin-bottom: 12px; color: #b17c40; font-size: 2rem; }
+.share-symbol { animation: share-star 5s ease-in-out infinite; }
+@keyframes share-star { 50% { opacity: .65; transform: rotate(45deg) scale(1.16); } }
+.share-card .eyebrow { color: #9a6a3e; font-family: var(--hindi); font-size: .82rem; }
+.share-card h2 { margin: 10px 0 12px; font-size: clamp(2.55rem, 4vw, 4rem); font-weight: 500; }
+.share-card h2 em { color: #a86c3d; font-style: normal; }
+.share-card > p:not(.share-feedback) { max-width: 650px; margin: 0 auto; color: #6e514b; line-height: 1.8; }
+.share-actions { position: relative; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 26px; }
+.share-actions a,
+.share-actions button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 10px; padding: 11px 19px; border: 1px solid #7d3240; background: #72283a; color: #fff8eb; font-family: var(--hindi); font-size: .9rem; font-weight: 700; transition: transform .25s ease, background .25s ease; }
+.share-actions a:hover,
+.share-actions button:hover { transform: translateY(-3px); background: #8d394b; }
+.share-actions button:nth-child(2) { border-color: #216b47; background: #216b47; }
+.share-actions button:nth-child(2):hover { background: #2a8659; }
+.share-actions button:last-child { border-color: #ad8652; background: #fff9ed; color: #6b3040; }
+.share-actions button:last-child:hover { background: #f2e1c6; }
+.share-feedback { min-height: 1.4em; margin: 16px 0 0; color: #276343; font-size: .85rem; font-weight: 700; }
+@media (max-width: 700px) {
+  .share-section { padding: 65px 18px 78px; }
+  .share-card { padding: 35px 21px 26px; }
+  .share-card h2 { font-size: clamp(2.4rem, 9vw, 3.2rem); }
+  .share-card > p:not(.share-feedback) { font-size: .9rem; }
+  .share-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  .share-actions button:first-child { grid-column: 1 / -1; }
+  .share-actions a,
+  .share-actions button { min-height: 50px; padding-inline: 8px; font-size: .81rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .share-actions a,
+  .share-actions button { transition: none; }
+  .opening-copy > span,
+  .blessings-ganesh,
+  .share-symbol { animation: none; }
+}
+
+/* The invitation unfurls as its section comes into view. */
+.invitation-book.is-open .book-paper {
+  transform-origin: top center;
+  animation: invitation-unfurl 10s cubic-bezier(.2,.75,.18,1) both;
+}
+.invitation-book.is-open .scroll-rod-bottom {
+  animation: invitation-rod-roll 10s cubic-bezier(.2,.75,.18,1) both;
+}
+@keyframes invitation-unfurl {
+  0% { clip-path: inset(0 0 96% 0); opacity: .65; transform: scaleY(.08); }
+  45% { opacity: 1; }
+  100% { clip-path: inset(0); opacity: 1; transform: scaleY(1); }
+}
+@keyframes invitation-rod-roll {
+  0% { transform: translateY(var(--paper-lift, -700px)) rotate(-4deg); }
+  55% { transform: translateY(-280px) rotate(2deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .invitation-book.is-open .book-paper,
+  .invitation-book.is-open .scroll-rod-bottom,
+  .opening-progress-wrap.is-active .opening-progress-track > span { animation: none; }
+}
