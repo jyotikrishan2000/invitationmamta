@@ -8,7 +8,7 @@ import { WEDDING_DATA as wedding } from "@/app/data/weddingData";
 
 const moments = [
   { image: "/images/couple-clean.jpg", title: "साथ की एक झलक", note: "हमारे विवाह की खुशी आपके साथ बाँट रहे हैं।" },
-  { image: "/images/wedding-banner-desktop-ji.png", title: "हमारा निमंत्रण", note: "03 दिसम्बर 2026 — एक दिन जो हमेशा याद रहेगा।" },
+  { image: "/images/opening-envelope.png", title: "हमारा निमंत्रण", note: "03 दिसम्बर 2026 — एक दिन जो हमेशा याद रहेगा।" },
   { image: "/images/hero-mandap.jpg", title: "उत्सव की तैयारी", note: "परिवार, परंपराएँ और अपनों के साथ बिताए जाने वाले पल।" },
 ];
 

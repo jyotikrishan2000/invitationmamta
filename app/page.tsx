@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { animate, createDrawable, createTimeline, spring, stagger } from "animejs";
 import { ArrowDown, ArrowLeft, ArrowRight, BookOpen, CalendarDays, Copy, Home, MapPin, Phone, Share2, X } from "lucide-react";
@@ -65,7 +65,6 @@ function Countdown() {
 export default function Page() {
   const [entered, setEntered] = useState(false);
   const [entering, setEntering] = useState(false);
-  const [opened, setOpened] = useState(false);
   const [page, setPage] = useState(0);
   const [chatOpen, setChatOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("top");
@@ -74,9 +73,23 @@ export default function Page() {
   const openingButton = useRef<HTMLButtonElement>(null);
   const progressBar = useRef<HTMLSpanElement>(null);
 
+  useLayoutEffect(() => {
+    const previousRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+    if (window.location.hash) {
+      window.history.replaceState(window.history.state, "", `${window.location.pathname}${window.location.search}`);
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    return () => { window.history.scrollRestoration = previousRestoration; };
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!entered) return;
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [entered]);
+
   useEffect(() => {
     if (entered) return;
-    openingButton.current?.focus();
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => { document.body.style.overflow = previousOverflow; };
@@ -89,7 +102,10 @@ export default function Page() {
     if (!cover || !card) return;
 
     const tl = createTimeline({
-      onComplete: () => setEntered(true),
+      onComplete: () => {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        setEntered(true);
+      },
     });
 
     // Step 1: Royal scroll anticipation & tactile lift
@@ -227,21 +243,6 @@ export default function Page() {
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, [entered]);
-
-  useEffect(() => {
-    if (!entered || opened || !("IntersectionObserver" in window)) return;
-    const book = document.querySelector<HTMLElement>(".invitation-book");
-    if (!book) return;
-    const observer = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      observer.disconnect();
-      const paper = book.querySelector<HTMLElement>(".book-paper");
-      if (paper) book.style.setProperty("--paper-lift", `-${paper.offsetHeight}px`);
-      setOpened(true);
-    }, { threshold: 0.1, rootMargin: "0px 0px -12% 0px" });
-    observer.observe(book);
-    return () => observer.disconnect();
-  }, [entered, opened]);
 
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
@@ -404,19 +405,12 @@ export default function Page() {
   }, [entered]);
 
   const enterInvitation = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setEntered(true);
       return;
     }
     setEntering(true);
-  };
-
-  const openInvitation = () => {
-    const book = document.querySelector<HTMLElement>(".invitation-book");
-    const paper = book?.querySelector<HTMLElement>(".book-paper");
-    if (book && paper) book.style.setProperty("--paper-lift", `-${paper.offsetHeight}px`);
-    setOpened(true);
-    document.getElementById("invitation")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
   };
 
   const onCardTouchEnd = (endX: number) => {
@@ -506,10 +500,10 @@ export default function Page() {
           <h1 id="hero-title"><span>Mamta Kumari</span><em>&amp;</em><span>Jitendra Ji</span></h1>
           <p className="hero-hindi">ममता कुमारी <span>संग</span> जितेन्द्र जी</p>
           <p className="hero-date">गुरुवार, 03 दिसम्बर 2026 <span>•</span> ऐलाना, जालोर</p>
-          <button className="open-button" type="button" onClick={openInvitation}>निमंत्रण खोलें <ArrowDown size={18} /></button>
+          <a className="open-button" href="#invitation">पूरा निमंत्रण पढ़ें <ArrowDown size={18} /></a>
         </div>
         <div className="hero-couple" aria-label="ममता कुमारी और जितेन्द्र जी की तस्वीर">
-          <Image src="/images/couple-refined.webp" alt="ममता कुमारी और जितेन्द्र जी" fill priority sizes="(max-width: 800px) 80vw, 37vw" />
+          <Image src="/images/couple-clean.jpg" alt="ममता कुमारी और जितेन्द्र जी की मूल तस्वीर" fill priority sizes="(max-width: 800px) 80vw, 37vw" />
         </div>
         <span className="hero-scroll-note">SCROLL TO CELEBRATE <ArrowDown size={13} /></span>
       </section>
@@ -533,12 +527,12 @@ export default function Page() {
       </section>
 
       <section id="invitation" className="invitation-section" aria-labelledby="invitation-title">
-        <div className="section-intro" data-reveal>
+        <div className="section-intro">
           <span className="eyebrow">A ROYAL INVITATION</span>
           <h2 id="invitation-title">शुभ <em>विवाह</em></h2>
           <p>स्नेह, आशीर्वाद और मंगल उत्सव के इस पावन अवसर पर आपका स्वागत है।</p>
         </div>
-        <div className={`invitation-book${opened ? " is-open" : ""}`} data-reveal>
+        <div className="invitation-book">
           <div className="scroll-rod" aria-hidden="true" />
           <div className="book-paper">
             <div className="book-topline"><GaneshaEmblem className="book-ganesh" /><span>॥ श्री गणेशाय नमः ॥</span></div>

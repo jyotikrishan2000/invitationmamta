@@ -41,7 +41,7 @@ img { max-width: 100%; }
   content: "";
   position: absolute;
   inset: -18px;
-  background: url("/images/wedding-banner-desktop-ji.png") center / cover no-repeat;
+  background: url("/images/couple-clean.jpg") center / cover no-repeat;
   filter: blur(14px) brightness(.48);
 }
 .invitation-gate::after {
@@ -422,7 +422,7 @@ img { max-width: 100%; }
 
 @media (max-width: 760px) {
   .invitation-gate { padding: 0; }
-  .invitation-gate::before { background-image: url("/images/wedding-banner-mobile-ji.png"); }
+  .invitation-gate::before { background-image: url("/images/couple-clean.jpg"); }
   .envelope-stage {
     display: flex;
     flex-direction: column;
