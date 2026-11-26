@@ -41,6 +41,7 @@ export const WEDDING_DATA = {
     "श्री रामाजी सुपुत्र स्व. श्री सोगा जी राठौड़, मेघवालों का वास, ऐलाना, जालोर",
   venueShort: "ऐलाना, जालोर (राजस्थान)",
   mapsQueryUrl: "https://maps.app.goo.gl/9E27zsXjpJVj4QgcA",
+  mapsEmbedUrl: `https://www.google.com/maps?q=${encodeURIComponent("मेघवालों का वास, ऐलाना, जालोर, राजस्थान")}&z=15&output=embed`,
   contacts: [
     { label: "संपर्क 1", number: "9982648548", whatsapp: "919982648548" },
     { label: "संपर्क 2", number: "9106035651", whatsapp: "919106035651" },

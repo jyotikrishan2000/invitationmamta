@@ -631,6 +631,11 @@ export default function Page() {
       <section id="venue" className="closing-section" aria-labelledby="closing-title">
         <div className="closing-art" aria-hidden="true" />
         <div className="closing-content" data-reveal><GaneshaEmblem className="closing-ganesh" /><span className="eyebrow">WITH LOVE FROM OUR FAMILIES</span><h2 id="closing-title">आपका हार्दिक<br /><em>स्वागत है</em></h2><p>ममता कुमारी और जितेन्द्र जी के इस मंगल उत्सव में पधारकर हमें आशीर्वाद दें।</p><a href={wedding.mapsQueryUrl} target="_blank" rel="noopener noreferrer" className="closing-map"><MapPin size={18} /> विवाह स्थल का रास्ता</a><span className="closing-signature">राठौड़ एवं परमार परिवार</span></div>
+        <div className="venue-map">
+          <div className="venue-map-heading"><MapPin size={20} aria-hidden="true" /><span>विवाह स्थल का क्षेत्र · ऐलाना, जालोर</span></div>
+          <iframe title="ऐलाना में विवाह स्थल के आसपास का Google Map" src={wedding.mapsEmbedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
+          <a href={wedding.mapsQueryUrl} target="_blank" rel="noopener noreferrer">सटीक रास्ता Google Maps में खोलें <ArrowRight size={17} /></a>
+        </div>
       </section>
 
       <footer className="site-footer"><span>M <i>✦</i> J</span><p>03 दिसम्बर 2026 · ऐलाना, जालोर (राजस्थान)</p><a href="#top">ऊपर जाएँ ↑</a></footer>

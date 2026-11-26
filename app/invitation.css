@@ -685,3 +685,47 @@
   outline: none;
   background: #7d2535;
 }
+
+.venue-map {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 880px);
+  margin: 52px auto 0;
+  overflow: hidden;
+  background: #fff7e9;
+  box-shadow: 0 24px 55px #18040db3;
+  color: #5b2332;
+  text-align: left;
+}
+.venue-map-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 17px 21px;
+  color: #672738;
+  font-size: .9rem;
+  font-weight: 700;
+}
+.venue-map-heading svg { flex: none; color: #aa7743; }
+.venue-map iframe { display: block; width: 100%; height: 380px; border: 0; background: #ead9bf; }
+.venue-map > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 12px 18px;
+  background: #f8e8ca;
+  color: #632638;
+  font-size: .87rem;
+  font-weight: 700;
+  text-align: center;
+}
+.venue-map > a:hover { background: #eed4a9; }
+@media (max-width: 700px) {
+  .closing-section { padding-inline: 15px; }
+  .venue-map { margin-top: 38px; }
+  .venue-map-heading { padding: 15px; font-size: .82rem; }
+  .venue-map iframe { height: min(360px, 75svh); }
+  .venue-map > a { font-size: .81rem; }
+}
