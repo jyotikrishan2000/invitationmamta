@@ -10,7 +10,7 @@ const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim()
 const siteUrl = new URL(configuredUrl
   ? /^https?:\/\//.test(configuredUrl) ? configuredUrl : `https://${configuredUrl}`
   : "http://localhost:3000");
-const previewImage = new URL("/images/couple-clean.jpg", siteUrl);
+const previewImage = new URL("/images/invitation-cover-preview.png", siteUrl);
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -36,9 +36,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: previewImage,
-        width: 682,
-        height: 1024,
-        alt: "ममता कुमारी और जितेन्द्र जी की मूल तस्वीर",
+        width: 458,
+        height: 810,
+        alt: "शुभ विवाह निमंत्रण का कवर पृष्ठ",
       },
     ],
   },

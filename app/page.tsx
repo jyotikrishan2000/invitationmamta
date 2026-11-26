@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { animate, createDrawable, createTimeline, spring, stagger } from "animejs";
+import { animate, createTimeline, stagger } from "animejs";
 import { ArrowDown, ArrowLeft, ArrowRight, BookOpen, CalendarDays, Copy, Home, MapPin, Phone, Share2, X } from "lucide-react";
 import { animateMotifDraw, GaneshaEmblem, PadmaDivider } from "@/components/Motifs";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
@@ -132,68 +132,6 @@ export default function Page() {
 
     return () => { tl.revert(); };
   }, [entering]);
-
-  useEffect(() => {
-    if (!entered || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const art = document.querySelector<HTMLElement>(".hero-art");
-    const couple = document.querySelector<HTMLElement>(".hero-couple");
-    const copy = document.querySelector<HTMLElement>(".hero-copy");
-    const ganesh = document.querySelector<SVGElement>(".hero-ganesh");
-    const titleElements = document.querySelectorAll<HTMLElement>("#hero-title span, #hero-title em");
-    const openBtn = document.querySelector<HTMLElement>(".open-button");
-
-    const tl = createTimeline({
-      defaults: { ease: "out(3)" },
-    });
-
-    if (art) {
-      tl.add(art, { opacity: [0.65, 1], scale: [1.03, 1], duration: 900 });
-    }
-
-    if (ganesh) {
-      const drawables = ganesh.querySelectorAll<SVGGeometryElement>("path[stroke], line[stroke], circle[stroke]");
-      if (drawables.length) {
-        tl.add(createDrawable(drawables), {
-          draw: ["0 0", "0 1"],
-          duration: 950,
-          delay: stagger(70),
-        }, "-=650");
-      }
-    }
-
-    if (copy) {
-      tl.add(copy, { opacity: [0, 1], y: [16, 0], duration: 750 }, "-=600");
-    }
-
-    if (titleElements.length) {
-      tl.add(titleElements, {
-        opacity: [0, 1],
-        y: [14, 0],
-        duration: 650,
-        delay: stagger(80),
-      }, "-=450");
-    }
-
-    if (couple) {
-      tl.add(couple, {
-        opacity: [0, 1],
-        y: [22, 0],
-        scale: [0.96, 1],
-        duration: 800,
-      }, "-=500");
-    }
-
-    if (openBtn) {
-      tl.add(openBtn, {
-        scale: [0.94, 1],
-        opacity: [0, 1],
-        duration: 500,
-        ease: spring({ bounce: 0.35 }),
-      }, "-=300");
-    }
-
-    return () => { tl.revert(); };
-  }, [entered]);
 
   useEffect(() => {
     if (!entered || window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
@@ -489,9 +427,6 @@ export default function Page() {
 
       <section id="top" className="greeting-hero" aria-labelledby="hero-title">
         <div className="hero-art" aria-hidden="true" />
-        <div className="hero-petals" aria-hidden="true">
-          {Array.from({ length: 12 }, (_, index) => <span key={index} style={{ left: `${7 + index * 8}%`, animationDelay: `${index * -0.9}s` }}>✿</span>)}
-        </div>
         <div className="hero-copy">
           <p className="auspicious">॥ श्री गणेशाय नमः ॥</p>
           <GaneshaEmblem className="hero-ganesh" />
@@ -500,7 +435,6 @@ export default function Page() {
           <h1 id="hero-title"><span>Mamta Kumari</span><em>&amp;</em><span>Jitendra Ji</span></h1>
           <p className="hero-hindi">ममता कुमारी <span>संग</span> जितेन्द्र जी</p>
           <p className="hero-date">गुरुवार, 03 दिसम्बर 2026 <span>•</span> ऐलाना, जालोर</p>
-          <a className="open-button" href="#invitation">पूरा निमंत्रण पढ़ें <ArrowDown size={18} /></a>
         </div>
         <div className="hero-couple" aria-label="ममता कुमारी और जितेन्द्र जी की तस्वीर">
           <Image src="/images/couple-clean.jpg" alt="ममता कुमारी और जितेन्द्र जी की मूल तस्वीर" fill priority sizes="(max-width: 800px) 80vw, 37vw" />

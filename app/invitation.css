@@ -161,23 +161,6 @@
 .wedding-site .hero-copy,
 .wedding-site .hero-couple { animation: none; }
 .wedding-site.is-entered .hero-copy { animation: none; }
-.wedding-site.is-entered .hero-couple { animation: hero-photo-in 1.2s .23s both; }
-.hero-art { animation: hero-art-breathe 18s ease-in-out infinite alternate; }
-@keyframes hero-art-breathe { from { transform: scale(1); } to { transform: scale(1.055); } }
-.hero-couple::after {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(110deg, transparent 25%, #fff8dc30 48%, transparent 65%);
-  transform: translateX(-120%);
-  animation: photo-glimmer 9s 2s ease-in-out infinite;
-  content: "";
-  pointer-events: none;
-}
-@keyframes photo-glimmer { 0%, 78%, 100% { transform: translateX(-120%); } 88% { transform: translateX(120%); } }
-.hero-scroll-note svg { animation: invitation-nudge 1.8s ease-in-out infinite; }
-.open-button svg { transition: transform .25s ease; }
-.open-button:hover svg { transform: translateY(4px); }
 .book-tabs button { transition: color .25s ease, background .25s ease, border-color .25s ease; }
 .book-tabs button:hover { background: #f5e4c57d; color: #6b2330; }
 .book-pagination button:not(:disabled) { transition: transform .25s ease, background .25s ease; }
@@ -318,7 +301,7 @@
   padding: 0;
   animation: none;
 }
-.greeting-hero .hero-copy > :not(.open-button) {
+.greeting-hero .hero-copy > * {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -354,9 +337,9 @@
     max-width: none;
     padding: 27px 22px 24px;
     color: #fff0dc;
-    animation: hero-copy-in .8s ease-out both;
+    animation: none;
   }
-  .greeting-hero .hero-copy > :not(.open-button) {
+  .greeting-hero .hero-copy > * {
     position: static;
     width: auto;
     height: auto;
