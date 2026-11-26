@@ -10,6 +10,11 @@ import { WEDDING_DATA as wedding } from "@/app/data/weddingData";
 
 const pageNames = ["परिचय", "कार्यक्रम", "स्थान व संपर्क"];
 const whatsappMessage = encodeURIComponent("नमस्ते, ममता कुमारी और जितेन्द्र जी के विवाह निमंत्रण के बारे में जानकारी चाहिए।");
+function getInvitationShareUrl() {
+  const url = new URL(window.location.pathname, window.location.origin);
+  url.searchParams.set("invite", "ganesh-2026");
+  return url.toString();
+}
 const featuredCeremonies = [
   { event: wedding.events[0], title: "गणेश स्थापना", art: "ganesh-card.webp", className: "ganesh" },
   { event: wedding.events[1], title: "बंदोली", art: "bandoli-card.webp", className: "bandoli" },
@@ -359,7 +364,7 @@ export default function Page() {
   };
 
   const copyInvitationLink = async () => {
-    const url = `${window.location.origin}${window.location.pathname}`;
+    const url = getInvitationShareUrl();
     try {
       await navigator.clipboard.writeText(url);
       setShareFeedback("निमंत्रण का लिंक कॉपी हो गया।");
@@ -369,7 +374,7 @@ export default function Page() {
   };
 
   const shareInvitation = async () => {
-    const url = `${window.location.origin}${window.location.pathname}`;
+    const url = getInvitationShareUrl();
     if (!navigator.share) {
       await copyInvitationLink();
       return;
@@ -384,7 +389,7 @@ export default function Page() {
   };
 
   const shareOnWhatsApp = () => {
-    const url = `${window.location.origin}${window.location.pathname}`;
+    const url = getInvitationShareUrl();
     const message = `ममता कुमारी और जितेन्द्र जी के शुभ विवाह में सादर आमंत्रित हैं। ${url}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
   };

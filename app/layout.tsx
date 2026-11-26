@@ -10,7 +10,7 @@ const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim()
 const siteUrl = new URL(configuredUrl
   ? /^https?:\/\//.test(configuredUrl) ? configuredUrl : `https://${configuredUrl}`
   : "http://localhost:3000");
-const previewImage = new URL("/images/invitation-cover-preview.png", siteUrl);
+const previewImage = new URL("/images/ganesh-social-preview-2026.png", siteUrl);
 
 export const viewport: Viewport = {
   width: "device-width",
