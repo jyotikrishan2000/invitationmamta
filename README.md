@@ -17,6 +17,6 @@ npm run dev
 
 GitHub पर कोड पुश करना वेबसाइट को सार्वजनिक रूप से होस्ट नहीं करता। इसे Vercel या किसी अन्य Next.js होस्ट पर प्रकाशित करें। सार्वजनिक Production URL `.env.production` में `NEXT_PUBLIC_SITE_URL` के रूप में सेट है। Domain बदलने पर इस public URL को अपडेट करके फिर deploy करें। Vercel पर यह variable न हो तो `VERCEL_PROJECT_PRODUCTION_URL` या `VERCEL_URL` इस्तेमाल होता है।
 
-मुखपृष्ठ की Open Graph और Twitter metadata उसी URL और `public/images/ganesh-social-preview-2026.png` को साझा कार्ड में इस्तेमाल करती है। मोबाइल पर **शेयर करें** सिस्टम शेयर मेनू खोलता है, **WhatsApp** पूरा वेबसाइट लिंक भेजता है, और **लिंक कॉपी करें** Instagram Story के Link sticker में इस्तेमाल किया जा सकता है। तीनों विकल्प `?invite=ganesh-2026` वाला URL देते हैं, जिससे सोशल ऐप पुराने लिंक के cached preview की जगह नया Ganesh cover fetch कर सकें। साझा URL खोलने पर वेबसाइट का मुख्य पृष्ठ खुलता है।
+मुखपृष्ठ की Open Graph और Twitter metadata Production URL और `public/images/ganesh-social-preview-2026.png` को साझा कार्ड में इस्तेमाल करती है। मोबाइल पर **शेयर करें** सिस्टम शेयर मेनू खोलता है, **WhatsApp** पूरा वेबसाइट लिंक भेजता है, और **लिंक कॉपी करें** Instagram Story के Link sticker में इस्तेमाल किया जा सकता है। तीनों विकल्प Production domain पर `?invite=ganesh-2026` वाला URL देते हैं, जिससे सोशल ऐप पुराने लिंक के cached preview की जगह नया Ganesh cover fetch कर सकें। साझा URL खोलने पर वेबसाइट का मुख्य पृष्ठ खुलता है।
 
 सोशल ऐप पुराने लिंक प्रीव्यू को cache कर सकते हैं। नई deployment के बाद preview बदलने में समय लग सकता है।

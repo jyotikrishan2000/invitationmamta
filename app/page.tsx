@@ -11,7 +11,7 @@ import { WEDDING_DATA as wedding } from "@/app/data/weddingData";
 const pageNames = ["परिचय", "कार्यक्रम", "स्थान व संपर्क"];
 const whatsappMessage = encodeURIComponent("नमस्ते, ममता कुमारी और जितेन्द्र जी के विवाह निमंत्रण के बारे में जानकारी चाहिए।");
 function getInvitationShareUrl() {
-  const url = new URL(window.location.pathname, window.location.origin);
+  const url = new URL(process.env.NEXT_PUBLIC_SITE_URL || window.location.origin);
   url.searchParams.set("invite", "ganesh-2026");
   return url.toString();
 }

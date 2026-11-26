@@ -11,6 +11,7 @@ const siteUrl = new URL(configuredUrl
   ? /^https?:\/\//.test(configuredUrl) ? configuredUrl : `https://${configuredUrl}`
   : "http://localhost:3000");
 const previewImage = new URL("/images/ganesh-social-preview-2026.png", siteUrl);
+const sharedInvitationUrl = new URL("/?invite=ganesh-2026", siteUrl);
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "hi_IN",
-    url: siteUrl,
+    url: sharedInvitationUrl,
     siteName: "ममता कुमारी संग जितेन्द्र जी — शुभ विवाह",
     title: "शुभ विवाह | ममता कुमारी संग जितेन्द्र जी — 03.12.2026",
     description:
